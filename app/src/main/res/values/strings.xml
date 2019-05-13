@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mei Mall</string>
+    <string name="drawer_closed">drawer_closed</string>
+    <string name="drawer_open">drawer_open</string>
+</resources>
