@@ -42,8 +42,8 @@ public class MainFragment extends Fragment {
 
         initBottomNavigation();
 
-        utils = new Utils();
-        utils.initDatabase(getActivity());
+        utils = new Utils(getActivity());
+        utils.initDatabase();
 
         initRecViews();
 
@@ -64,7 +64,7 @@ public class MainFragment extends Fragment {
         popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         suggestedItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        ArrayList<GroceryItem> newItems = utils.getAllItems(getActivity());
+        ArrayList<GroceryItem> newItems = utils.getAllItems();
 
         Comparator<GroceryItem> newItemsComparator = new Comparator<GroceryItem>() {
             @Override
@@ -80,7 +80,7 @@ public class MainFragment extends Fragment {
             newItemsAdapter.setItems(newItems);
         }
 
-        ArrayList<GroceryItem> popularItems = utils.getAllItems(getActivity());
+        ArrayList<GroceryItem> popularItems = utils.getAllItems();
 
         Comparator<GroceryItem> popularityComparator = new Comparator<GroceryItem>() {
             @Override
@@ -94,7 +94,7 @@ public class MainFragment extends Fragment {
 
         popularItemsAdapter.setItems(popularItems);
 
-        ArrayList<GroceryItem> suggestedItems = utils.getAllItems(getActivity());
+        ArrayList<GroceryItem> suggestedItems = utils.getAllItems();
         Comparator<GroceryItem> suggestedItemsComparator = new Comparator<GroceryItem>() {
             @Override
             public int compare(GroceryItem o1, GroceryItem o2) {
