@@ -69,7 +69,7 @@ public class AddReviewDialog extends DialogFragment {
         String reviewText = edtTxtReview.getText().toString();
         String date = getCurrentDate();
 
-        Review review = new Review(itemId, name, reviewText, date);
+        Review review = new Review(itemId, name, date, reviewText);
 
         try {
             addReview = (AddReview) getActivity();
