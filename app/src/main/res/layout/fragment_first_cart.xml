@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartExplain"
+        android:text="Items in your cart"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_above="@+id/txtSum"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/cartExplain"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="no items in your cart"
+        android:id="@+id/txtNoItem"
+        android:textStyle="italic"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUM:"
+        android:layout_above="@+id/btnNext"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginRight="5dp"
+        android:id="@+id/sumExplain"
+        android:layout_toLeftOf="@+id/txtSum"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:layout_above="@+id/btnNext"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentRight="true"
+        android:text="0 $"
+        android:id="@+id/txtSum"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNext"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="next"/>
+
+</RelativeLayout>

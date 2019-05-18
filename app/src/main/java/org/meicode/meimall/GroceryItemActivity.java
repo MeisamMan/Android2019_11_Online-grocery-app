@@ -89,6 +89,9 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
             @Override
             public void onClick(View v) {
                 utils.addItemToCart(incomingItem.getId());
+                Intent intent = new Intent(GroceryItemActivity.this, CartActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
