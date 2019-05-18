@@ -59,6 +59,10 @@ public class CartSecondFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("order", incomingOrder);
+        ThirdCartFragment thirdCartFragment = new ThirdCartFragment();
+        thirdCartFragment.setArguments(bundle);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, thirdCartFragment).commit();
     }
 
     private boolean validateData () {

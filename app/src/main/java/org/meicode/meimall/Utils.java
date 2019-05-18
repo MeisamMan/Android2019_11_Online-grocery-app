@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.meicode.meimall.Models.GroceryItem;
+import org.meicode.meimall.Models.Order;
 import org.meicode.meimall.Models.Review;
 
 import java.lang.reflect.Type;
@@ -353,5 +354,13 @@ public class Utils {
         }
 
         return newItems;
+    }
+
+    public void removeCartItems () {
+        Log.d(TAG, "removeCartItems: started");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("cartItems");
+        editor.apply();
     }
 }
