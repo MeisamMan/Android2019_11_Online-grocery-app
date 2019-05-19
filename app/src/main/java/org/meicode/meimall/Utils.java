@@ -363,4 +363,31 @@ public class Utils {
         editor.remove("cartItems");
         editor.apply();
     }
+
+    public void addPopularityPoint (ArrayList<Integer> items) {
+        Log.d(TAG, "addPopularityPoint: started");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<GroceryItem>>() {
+        }.getType();
+        ArrayList<GroceryItem> allItems = gson.fromJson(sharedPreferences.getString("allItems", null), type);
+
+        ArrayList<GroceryItem> newItems = new ArrayList<>();
+        for (GroceryItem i: allItems) {
+            boolean doesExist = false;
+            for (int j: items) {
+                if (i.getId() == j) {
+                    doesExist = true;
+                }
+            }
+            if (doesExist) {
+                i.setPopularityPoint(i.getPopularityPoint()+1);
+            }
+            newItems.add(i);
+        }
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("allItems", gson.toJson(newItems));
+        editor.apply();
+    }
 }

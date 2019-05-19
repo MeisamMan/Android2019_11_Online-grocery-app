@@ -1,15 +1,19 @@
 package org.meicode.meimall;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import org.meicode.meimall.Models.Order;
@@ -19,6 +23,8 @@ public class CartSecondFragment extends Fragment {
 
     private EditText edtTxtAddress, edtTxtZipCode, edtTxtPhoneNumber, edtTxtEmail;
     private Button btnBack, btnNext;
+    private RelativeLayout parent, addressRelLayout, emailRelLayout, phoneNumberRelLayout, zipCodeRelLayout;
+    private NestedScrollView nestedScrollView;
 
     private Order incomingOrder;
 
@@ -50,6 +56,8 @@ public class CartSecondFragment extends Fragment {
                 }
             }
         });
+
+        initRelLayouts();
 
         return view;
     }
@@ -95,5 +103,65 @@ public class CartSecondFragment extends Fragment {
 
         btnBack = (Button) view.findViewById(R.id.btnBack);
         btnNext = (Button) view.findViewById(R.id.btnNext);
+
+        parent = (RelativeLayout) view.findViewById(R.id.parent);
+        addressRelLayout = (RelativeLayout) view.findViewById(R.id.addressRelLayout);
+        emailRelLayout = (RelativeLayout) view.findViewById(R.id.emailRelLayout);
+        phoneNumberRelLayout = (RelativeLayout) view.findViewById(R.id.phoneNumberRelLayout);
+        zipCodeRelLayout = (RelativeLayout) view.findViewById(R.id.zipCodeRelLayout);
+        nestedScrollView = (NestedScrollView) view.findViewById(R.id.nestedScrollView);
+    }
+
+    private void closeKeyboard () {
+        View view = getActivity().getCurrentFocus();
+        if (null != view) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void initRelLayouts () {
+        Log.d(TAG, "initRelLayouts: started");
+        parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
+
+        addressRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
+
+        emailRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
+
+        phoneNumberRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
+
+        zipCodeRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
+
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                closeKeyboard();
+            }
+        });
     }
 }

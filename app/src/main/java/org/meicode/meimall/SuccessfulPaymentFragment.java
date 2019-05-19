@@ -11,6 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.meicode.meimall.Models.Order;
+
+import java.util.ArrayList;
+
 public class SuccessfulPaymentFragment extends Fragment {
     private static final String TAG = "SuccessfulPalymentFragm";
 
@@ -23,6 +27,15 @@ public class SuccessfulPaymentFragment extends Fragment {
 
         Utils utils = new Utils(getActivity());
         utils.removeCartItems();
+
+        Bundle bundle = getArguments();
+        try {
+            Order order = bundle.getParcelable("order");
+            ArrayList<Integer> itemIds = order.getItems();
+            utils.addPopularityPoint(itemIds);
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         btnGoBack = (Button) view.findViewById(R.id.btnGoBack);
 
