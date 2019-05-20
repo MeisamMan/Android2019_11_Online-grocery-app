@@ -133,6 +133,9 @@ public class SearchActivity extends AppCompatActivity implements ShowAllCategori
 
         String text = searchBar.getText().toString();
         ArrayList<GroceryItem> items = utils.searchForItem(text);
+        for (GroceryItem item: items) {
+            utils.increaseUserPoint(item, 3);
+        }
         adapter.setItems(items);
     }
 

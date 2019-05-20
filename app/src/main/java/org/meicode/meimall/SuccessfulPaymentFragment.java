@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.meicode.meimall.Models.GroceryItem;
 import org.meicode.meimall.Models.Order;
 
 import java.util.ArrayList;
@@ -33,6 +34,14 @@ public class SuccessfulPaymentFragment extends Fragment {
             Order order = bundle.getParcelable("order");
             ArrayList<Integer> itemIds = order.getItems();
             utils.addPopularityPoint(itemIds);
+            ArrayList<GroceryItem> items = utils.getItemsById(itemIds);
+            for (GroceryItem item: items) {
+                ArrayList<GroceryItem> sameCategory = new ArrayList<>();
+                sameCategory = utils.getItemsByCategory(item.getCategory());
+                for (GroceryItem j: sameCategory) {
+                    utils.increaseUserPoint(j, 4);
+                }
+            }
         }catch (NullPointerException e) {
             e.printStackTrace();
         }
