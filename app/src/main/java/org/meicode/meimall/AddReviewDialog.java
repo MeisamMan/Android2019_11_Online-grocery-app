@@ -65,20 +65,36 @@ public class AddReviewDialog extends DialogFragment {
 
     private void addReview () {
         Log.d(TAG, "addReview: started");
-        String name = edtTxtName.getText().toString();
-        String reviewText = edtTxtReview.getText().toString();
-        String date = getCurrentDate();
 
-        Review review = new Review(itemId, name, date, reviewText);
+        if (validateData()) {
+            String name = edtTxtName.getText().toString();
+            String reviewText = edtTxtReview.getText().toString();
+            String date = getCurrentDate();
 
-        try {
-            addReview = (AddReview) getActivity();
+            Review review = new Review(itemId, name, date, reviewText);
 
-            addReview.onAddReviewResult(review);
-            dismiss();
-        }catch (ClassCastException e) {
-            e.printStackTrace();
+            try {
+                addReview = (AddReview) getActivity();
+
+                addReview.onAddReviewResult(review);
+                dismiss();
+            }catch (ClassCastException e) {
+                e.printStackTrace();
+            }
+        }else {
+            txtWarning.setVisibility(View.VISIBLE);
         }
+    }
+
+    private boolean validateData () {
+        Log.d(TAG, "validateData: started");
+        if (edtTxtName.getText().toString().equals("")) {
+            return false;
+        }
+        if (edtTxtReview.getText().toString().equals("")) {
+            return false;
+        }
+        return true;
     }
 
     private String getCurrentDate() {

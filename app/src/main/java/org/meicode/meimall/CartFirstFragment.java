@@ -83,7 +83,6 @@ public class CartFirstFragment extends Fragment implements CartRecViewAdapter.Ge
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: navigate to next fragment
                 Order order = new Order();
                 order.setTotalPrice(totalPrice);
                 order.setItems(items);
@@ -92,6 +91,7 @@ public class CartFirstFragment extends Fragment implements CartRecViewAdapter.Ge
                 CartSecondFragment cartSecondFragment = new CartSecondFragment();
                 cartSecondFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.in, R.anim.out)
                         .replace(R.id.fragment_container, cartSecondFragment).commit();
             }
         });
@@ -111,22 +111,21 @@ public class CartFirstFragment extends Fragment implements CartRecViewAdapter.Ge
         if (null != itemsIds) {
 
             ArrayList<GroceryItem> items = utils.getItemsById(itemsIds);
-
             if (items.size()==0) {
                 btnNext.setVisibility(View.GONE);
                 btnNext.setEnabled(false);
                 recyclerView.setVisibility(View.GONE);
                 txtNoItem.setVisibility(View.VISIBLE);
 
-            }else {
-                btnNext.setVisibility(View.VISIBLE);
-                btnNext.setEnabled(true);
-                recyclerView.setVisibility(View.VISIBLE);
-                txtNoItem.setVisibility(View.GONE);
             }
 
             this.items = itemsIds;
             adapter.setItems(items);
+        }else {
+            btnNext.setVisibility(View.GONE);
+            btnNext.setEnabled(false);
+            recyclerView.setVisibility(View.GONE);
+            txtNoItem.setVisibility(View.VISIBLE);
         }
     }
 

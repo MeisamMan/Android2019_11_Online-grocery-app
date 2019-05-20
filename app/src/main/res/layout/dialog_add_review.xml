@@ -45,7 +45,9 @@
         android:id="@+id/txtWarning"
         android:textColor="@color/colorAccent"
         android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="Please fill all of the fields"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
